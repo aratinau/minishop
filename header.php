@@ -38,3 +38,11 @@
             </div>
         </nav>
         <div class="container">
+			<?php if (isset($_SESSION["message"])) : ?>
+			<div class="alert alert-<?php echo $_SESSION["message"]["type"]; ?>" role="alert">
+				<?php
+					echo $_SESSION["message"]["content"];
+					unset($_SESSION["message"]);
+				?>
+			</div>
+			<?php endif; ?>

@@ -6,10 +6,21 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 		$firstname = htmlspecialchars($_POST["firstname"]);
 		$email = htmlspecialchars($_POST["email"]);
 		$password = htmlspecialchars($_POST["password"]);
-        $sql = "INSERT INTO users (firstname, email, password) VALUES (?,?,?)";
-        $stmt= $dbh->prepare($sql);
-        $stmt->execute([$firstname, $email, $password]);
-		header('Location: /pages/register.php');
+		// verifie si l'adresse email est déjà présente dans la base de donnée
+		$query_count_email = "SELECT * from users";
+		$request = $dbh->query($query_count_email);
+		$result = $request->fetchAll(PDO::FETCH_ASSOC);
+		$count = count($result);
+		if($count === 0) {
+			// créé le nouvel utilisateur
+			$sql = "INSERT INTO users (firstname, email, password) VALUES (?,?,?)";
+			$stmt= $dbh->prepare($sql);
+			$stmt->execute([$firstname, $email, $password]);
+			header('Location: /pages/register.php');
+		} else {
+			$_SESSION["message"]["type"] = "danger";
+			$_SESSION["message"]["content"] = "Adresse email deja utilisé";
+		}
     }
 }
 require('../header.php'); ?>
