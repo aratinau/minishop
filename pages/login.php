@@ -6,23 +6,20 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     if (!empty(($_POST["email"]) && !empty($_POST["password"]))) {
 		$email = htmlspecialchars($_POST["email"]);
 		$password = htmlspecialchars($_POST["password"]);
-		$stmt = $dbh->prepare("SELECT COUNT(*) AS is_credentials_valid FROM users WHERE email = ? AND password = ?");
-		$stmt->execute([$email, $password]);
+        $stmt = $dbh->prepare("SELECT * FROM users WHERE email = ?");
+		$stmt->execute([$email]);
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		$is_credentials_valid = $result["is_credentials_valid"];
-        if ($is_credentials_valid == 1) {
-            $stmt = $dbh->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
-            $stmt->execute([$email, $password]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($password, $result["password"])) {
             unset($result["password"]);
             $_SESSION["user"] = $result;
-
 			$_SESSION["message"]["type"] = "success";
 			$_SESSION["message"]["content"] = "Vous êtes connecté";
-		} else {
+        }
+        else
+        {
 			$_SESSION["message"]["type"] = "danger";
 			$_SESSION["message"]["content"] = "Mauvais mot de passe ou email";
-		}
+        }
     }
 }
 ?>

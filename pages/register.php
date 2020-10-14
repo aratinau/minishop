@@ -6,6 +6,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 		$firstname = htmlspecialchars($_POST["firstname"]);
 		$email = htmlspecialchars($_POST["email"]);
 		$password = htmlspecialchars($_POST["password"]);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 		// verifie si l'adresse email est déjà présente dans la base de donnée
 		$stmt = $dbh->prepare("SELECT COUNT(*) AS count_email FROM users WHERE email = ?");
 		$stmt->execute([$email]);
