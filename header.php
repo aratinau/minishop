@@ -28,10 +28,10 @@
                         <a class="nav-link" href="/index.php">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="pages/login.php">Login</a>
+                        <a class="nav-link" href="/pages/login.php">Login</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="/pages/register.php">Register</a>
                       </li>
                     </ul>
                   </div>

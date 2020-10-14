@@ -1,8 +1,8 @@
 <?php
 require('config.php');
 require('init.php');
+require('header.php');
 ?>
-<?php require('header.php'); ?>
 	<h1>Mini Shop</h1>
 	<?php 
 		foreach($dbh->query('SELECT * from products') as $row) {
