@@ -27,12 +27,18 @@
                       <li class="nav-item active">
                       <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/index.php">Home</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/login.php">Login</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/register.php">Register</a>
-                      </li>
+                        <?php if (isset($_SESSION["user"])) { ?>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/logout.php">Logout</a>
+                          </li>
+                        <?php } else { ?>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/login.php">Login</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/register.php">Register</a>
+                          </li>
+                        <?php } ?>
                     </ul>
                   </div>
             </div>
