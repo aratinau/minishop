@@ -26,7 +26,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 }
 require('../header.php'); ?>
 <h1>Register</h1>
-<form action="/pages/register.php" method="post">
+<form action="<?php echo NAME_FOLDER_PROJECT; ?>/pages/register.php" method="post">
   <div class="form-group">
     <label for="inputEmail">Email address</label>
     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email">

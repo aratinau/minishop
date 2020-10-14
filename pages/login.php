@@ -10,7 +10,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 ?>
 <?php require('../header.php'); ?>
 <h1>Login</h1>
-<form action="/pages/login.php" method="post">
+<form action="<?php echo NAME_FOLDER_PROJECT; ?>/pages/login.php" method="post">
   <div class="form-group">
     <label for="inputEmail">Email address</label>
     <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email">
