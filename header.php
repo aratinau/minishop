@@ -17,7 +17,7 @@
 	</head>
 	<body class="">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container"
+            <div class="container">
                   <a class="navbar-brand" href="<?php echo NAME_FOLDER_PROJECT; ?>/index.php">MiniShop</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,6 +39,9 @@
                             <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/register.php">Register</a>
                           </li>
                         <?php } ?>
+                        <li class="nav-item">
+                          <a class="nav-link" href="<?php echo NAME_FOLDER_PROJECT; ?>/pages/cart.php">Panier</a>
+                        </li>
                     </ul>
                   </div>
             </div>
@@ -52,3 +55,7 @@
 				?>
 			</div>
 			<?php endif; ?>
+<?php
+// debug cart
+// var_dump($_SESSION["cart"]);
+?>

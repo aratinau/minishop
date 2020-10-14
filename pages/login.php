@@ -20,6 +20,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 			$_SESSION["message"]["type"] = "danger";
 			$_SESSION["message"]["content"] = "Mauvais mot de passe ou email";
         }
+		header('Location: '.NAME_FOLDER_PROJECT . '/index.php');
+		exit();
     }
 }
 ?>

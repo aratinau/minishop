@@ -1,17 +1,29 @@
 <?php
-session_start();
 
 require('config.php');
 require('init.php');
 require('header.php');
 ?>
-	<h1>Mini Shop</h1>
-	<div class="row">
-      <div class="col-lg-4">
-        <h2>Heading</h2>
-		<img src="" />
-        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-      </div>
+<div class="row">
+<?php
+
+$stmt = $dbh->prepare("SELECT * FROM products");
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach ($result as $product)
+{
+?>
+	<div class="col-lg-4">
+		<h1><?php echo $product["name"]; ?></h1>
+		<div>
+			<img src="<?php echo $product["img"]; ?>" />
+			<p><?php echo $product["description"]; ?>
+			<p><a class="btn btn-secondary" href="<?php echo NAME_FOLDER_PROJECT; ?>/add-to-cart.php?id_product=<?php echo $product["id"]; ?>" role="button">Ajouter au panier</a></p>
+		</div>
     </div>
-<?php require('footer.php'); ?>
+<?php
+}
+?>
+</div>
+<?php
+require('footer.php'); ?>
